@@ -8,6 +8,7 @@ COPY . /usr/src/demo
 WORKDIR /usr/src/demo
 
 # Biên dịch ứng dụng của bạn (ví dụ: sử dụng Maven)
+RUN chmod +x mvnw
 RUN ./mvn -X clean package
 
 # Chạy ứng dụng khi container được khởi động
