@@ -1,5 +1,5 @@
-# Sử dụng một hình ảnh Maven chứa JDK 14 để xây dựng ứng dụng Java của bạn
-FROM maven:3.2.2-openjdk-14-slim
+# Sử dụng một hình ảnh JDK để xây dựng ứng dụng Java của bạn
+FROM openjdk:14
 
 # Sao chép tất cả các tệp và thư mục cần thiết từ máy cục bộ vào container
 COPY . /usr/src/demo
@@ -7,8 +7,12 @@ COPY . /usr/src/demo
 # Thiết lập thư mục làm việc
 WORKDIR /usr/src/demo
 
-# Biên dịch ứng dụng của bạn (sử dụng Maven)
-RUN mvn -f /usr/src/demo/pom.xml clean package
+# Tải xuống và cài đặt Apache Maven
+RUN wget -q "https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz" -O /tmp/apache-maven.tar.gz && \
+    tar xzf /tmp/apache-maven.tar.gz -C /opt && \
+    rm -f /tmp/apache-maven.tar.gz && \
+    ln -s /opt/apache-maven-3.8.4 /opt/maven && \
+    ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
 
-# Chạy ứng dụng khi container được khởi động
-CMD ["java", "-jar", "/usr/src/demo/target/demo.jar"]
+# Biên dịch ứng dụng của bạn (sử dụng Maven)
+RUN mv
