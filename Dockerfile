@@ -1,5 +1,5 @@
 # Sử dụng một hình ảnh JDK để xây dựng ứng dụng Java của bạn
-FROM openjdk:17
+FROM openjdk:11
 
 # Sao chép tất cả các tệp và thư mục cần thiết từ máy cục bộ vào container
 COPY . /usr/src/demo
