@@ -1,8 +1,5 @@
-# Sử dụng một hình ảnh JDK để xây dựng ứng dụng Java của bạn
-FROM openjdk:11
-
-RUN apt-get update && \
-    apt-get install -y maven
+# Sử dụng hình ảnh OpenJDK 14
+FROM openjdk:14
 
 # Sao chép tất cả các tệp và thư mục cần thiết từ máy cục bộ vào container
 COPY . /usr/src/demo
@@ -11,7 +8,7 @@ COPY . /usr/src/demo
 WORKDIR /usr/src/demo
 
 # Biên dịch ứng dụng của bạn (ví dụ: sử dụng Maven)
-RUN mvn clean package
+RUN ./mvnw clean package
 
 # Chạy ứng dụng khi container được khởi động
 CMD ["java", "-jar", "target/demo.jar"]
