@@ -1,7 +1,7 @@
 # Sử dụng một hình ảnh JDK để xây dựng ứng dụng Java của bạn
 FROM openjdk:14
 
-# Cài đặt Maven bằng cách sử dụng cURL
+# Tải xuống và cài đặt Apache Maven
 RUN apt-get update && apt-get install -y curl && \
     curl -fsSL -o /tmp/apache-maven.tar.gz "https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz" && \
     tar xzf /tmp/apache-maven.tar.gz -C /opt && \
