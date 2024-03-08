@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get install -y maven
 
 # Biên dịch ứng dụng của bạn (ví dụ: sử dụng Maven)
-RUN mvn -f /demo/pom.xml clean package
+RUN mvn -f demo/pom.xml clean package
 
 # Chạy ứng dụng khi container được khởi động
 CMD ["java", "-jar", "target/demo.jar"]
