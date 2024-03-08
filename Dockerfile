@@ -1,9 +1,13 @@
 # Sử dụng một hình ảnh JDK để xây dựng ứng dụng Java của bạn
 FROM openjdk:14
 
-# Cài đặt Maven với quyền root
-RUN apt-get update && \
-    apt-get install -y maven
+# Tải xuống và cài đặt Apache Maven
+RUN wget -q "https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz" -O /tmp/apache-maven.tar.gz && \
+    tar xzf /tmp/apache-maven.tar.gz -C /opt && \
+    rm -f /tmp/apache-maven.tar.gz && \
+    ln -s /opt/apache-maven-3.8.4 /opt/maven && \
+    ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
+
 
 
 
