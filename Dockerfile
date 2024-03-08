@@ -1,5 +1,5 @@
 # Sử dụng một hình ảnh Maven có sẵn
-FROM maven:3.8.4-openjdk-14
+FROM openjdk-14
 
 # Sao chép tất cả các tệp và thư mục cần thiết từ máy cục bộ vào container
 COPY . /usr/src/demo
