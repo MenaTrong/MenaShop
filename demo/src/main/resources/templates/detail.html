@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<!-- basic -->
+	<meta charset="utf-8">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Chi tiết - Mena Shop</title>
+	<link rel="stylesheet" href="CSS/CSS-Ind/bootstrap.min.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/style.css">
+	<link rel="stylesheet" href="CSS/CSS-Detail/detail.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/responsive.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="CSS/util.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+		media="screen">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<!-- body -->
+
+<body class="main-layout position_head">
+	<!-- end loader -->
+	<!-- header -->
+	<header class="m-b--80">
+		<!-- header inner -->
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo" style="width: 100%;">
+									<a href="/home"> <img src="images/images/logoshop.png" alt="#"  style="width: 45%;"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon" style="position: relative; top: -10px;">
+									<i class="fas fa-bars" style="color: #03cafc;"></i>
+								</span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item">
+										<a class="nav-link" href="home">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="shop">Shop</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="contact">Contact Us</a>
+									</li>
+									<li class="nav-item" sec:authorize="!isAuthenticated()">
+										<a class="nav-link" href="login">Login</a>
+									</li>
+									<li class="nav-item" sec:authorize="isAuthenticated()">
+										<form th:action="@{/logout}" method="post">
+											<button type="submit" class="nav-link"
+												style="background-color: transparent;">Logout</button>
+										</form>
+									</li>
+									<li class="nav-item dropdown sea_icon">
+										<a class="nav-link" href="#" role="button" data-toggle="dropdown" 
+											aria-haspopup="true" aria-expanded="false">
+											<i class="fa fa-shopping-bag" id="cartIcon"  aria-hidden="true"></i>
+											<span id="cartItemCount" class="badge badge-pill badge-danger"
+												style="position: absolute; bottom: 8px; left: 6px; font-size: 10px;"
+												sec:authorize="isAuthenticated()"
+												th:text="${soLuongSanPham}"></span>
+											<i class="m-l-30 fa fa-user" id="infUserIcon" aria-hidden="true"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header inner -->
+	<!-- end header -->
+	<div id="contact" class="contact">
+		<div class="container">
+			<div class="container">
+				<div class="main-body">
+
+					<!-- Breadcrumb -->
+					<nav aria-label="breadcrumb" class="main-breadcrumb">
+						<div class="breadcrumb">
+							<li class="breadcrumb-item active" aria-current="page">Detail Product</li>
+						</div>
+					</nav>
+					<!-- /Breadcrumb -->
+
+					<div class="row gutters-sm">
+						<div class="col-md-12">
+							<div class="card mb-3">
+								<div class="card-body">
+									<div class="row">
+										<div class="card-body">
+											<h1 class="fs-40" th:text="@{${product.name}}"></h1>
+											<h6 class="m-b-20" th:text="@{${product.name}}"></h6>
+											<div class="row">
+												<div class="col-lg-5 col-md-5 col-sm-6">
+													<div class="white-box text-center">
+														<img id="productImage" th:src="@{${product.picture}}"
+															class="img-responsive">
+													</div>
+
+													<!--Images slider -->
+													<div class="">
+														<div class="thumbnail-container">
+															<img src="images/images/Hoodiecam.jpeg" class="thumbnail"
+																onclick="changeImage('images/images/Hoodiecam.jpeg')">
+															<img src="images/images/Hoodiecam.jpeg" class="thumbnail"
+																onclick="changeImage('images/images/Hoodiecam.jpeg')">
+															<img src="images/images/Hoodiecam.jpeg" class="thumbnail"
+																onclick="changeImage('images/images/Hoodiecam.jpeg')">
+															<img src="images/images/Hoodiecam.jpeg" class="thumbnail"
+																onclick="changeImage('images/images/Hoodiecam.jpeg')">
+															<img src="images/images/Hoodiecam.jpeg" class="thumbnail"
+																onclick="changeImage('images/images/Hoodiecam.jpeg')">
+														</div>
+													</div>
+													<!-- End Images slider -->
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-6">
+													<h4 class="box-title fs-30 m-t-17">Product description</h4>
+													<p>Lorem Ipsum available,but the majority have suffered alteration
+														in some form,by
+														injected
+														humour,or randomised words which don't look even slightly
+														believable.but the
+														majority have
+														suffered alteration in some form,by injected humour</p>
+
+													<div class="rating m-t-10 row-detail">
+														<input type="radio" name="star" id="star1" onclick="rate(1)">
+														<label for="star1"><i class="fa fa-star"></i></label>
+
+														<input type="radio" name="star" id="star2" onclick="rate(2)">
+														<label for="star2"><i class="fa fa-star"></i></label>
+
+														<input type="radio" name="star" id="star3" onclick="rate(3)">
+														<label for="star3"><i class="fa fa-star"></i></label>
+
+														<input type="radio" name="star" id="star4" onclick="rate(4)">
+														<label for="star4"><i class="fa fa-star"></i></label>
+
+														<input type="radio" name="star" id="star5" onclick="rate(5)">
+														<label for="star5"><i class="fa fa-star"></i></label>
+														<h2 class="m-l-5">(496)</h2>
+
+													</div>
+
+													<span class="strike-through"
+														th:text="${product.price} + VND"></span>
+													<span class="blu fs-30" th:text="${product.price}"></span> VND
+
+
+
+													<div class="row col-md-12">
+														<div class="size" id="sizeList">
+															<h4>Size:</h4>
+															<ul>
+																<li><a href="#" class="one" data-size="S">S</a></li>
+																<li><a href="#" class="one" data-size="M">M</a></li>
+																<li><a href="#" class="one" data-size="L">L</a></li>
+																<li><a href="#" class="one" data-size="XL">XL</a></li>
+																<li><a href="#" class="one" data-size="XXL">XXL</a></li>
+															</ul>
+														</div>
+
+														<div class="quantity">
+															<h4>Quantity :</h4>
+															<div class="input-group">
+																<div class="button minus">
+																	<button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="quant[1]">
+																		<i class="fas fa-minus"></i>
+																	</button>
+																</div>
+														
+																<input id="quantityInput"
+																type="text" name="quant[1]"
+																class="input-number" data-min="1" data-max="1000"
+																value="1">
+														
+																<div class="button plus">
+																	<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+																		<i class="fas fa-plus"></i>
+																	</button>
+																</div>
+															</div>
+														</div>
+
+													</div>
+
+													<div class="row col-md-12">
+														<a th:href="'javascript:void(0)'"
+															sec:authorize="isAuthenticated()"
+															th:onclick="@{'addToCart(\'' + ${product.id} + '\', \'' + ${username} + '\')'}"
+															id="addToCartButton"
+															class="btn btn-primary send_btn btn-text-center m-r-17"
+															style="width: 55%;">
+															<i class="fa fa-shopping-cart"></i> Add To Cart
+														</a>
+														<a href="#" id="openDialogButton"
+															class="btn btn-primary send_btn btn-text-center"
+															style="width: 40%;" data-toggle="modal"
+															data-target="#checkoutModal" onclick="buyNow()"
+															disabled>Buy Now</a>
+													</div>
+													<div id="checkoutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+														<!-- Your checkout form content here -->
+														<main role="main">
+															<!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+															<div
+																class="container mt-4 white-background borderless-container">
+																<button class="exit-button" onclick="toggleModal()">
+																	<i class="fas fa-times"></i>
+																	<!-- Font Awesome "X" icon -->
+																</button>
+																<form class="needs-validation" name="frmthanhtoan" method="get" action="/sendemail">
+																	<input type="hidden" id="sizeBuy" name="size" value="">
+																	<input type="hidden" id="quantityBuy" name="quantity" value="">
+																	<input type="hidden" id="priceBuy" name="price" value="">
+																	<input type="hidden" id="productBuy" name="productid" value="">
+
+																	<div class="py-5 text-center">
+																		<i class="fa fa-credit-card fa-4x"
+																			aria-hidden="true"></i>
+																		<h2>Thanh toán</h2>
+																		<p class="lead">Vui lòng kiểm tra thông tin
+																			Khách hàng, thông tin Giỏ hàng trước
+																			khi Đặt hàng.</p>
+																	</div>
+
+																	<div class="row">
+																		<div class="col-md-4 order-md-2 mb-4">
+																			<h4
+																				class="d-flex justify-content-between align-items-center mb-3">
+																				<span class="text-muted">Sản phẩm:</span>
+																				<span
+																					class="badge badge-secondary badge-pill"
+																					id="quantityDispla2"></span>
+																			</h4>
+																			<ul class="list-group mb-3">
+																				<li
+																					class="list-group-item d-flex justify-content-between lh-condensed">
+																					<div>
+																						<h6 class="my-0" th:text="${product.name}"></h6>
+																						<small id="selectedSizeSpan"></small>
+																						<small
+																							class="text-muted"
+																							id="quantityDisplay"></small>
+																							<small
+																							class="text-muted"
+																							th:text="' x ' + ${product.price} + '.00 VND'"></small>
+																					</div>
+																				</li>
+
+																				<li
+																					class="list-group-item d-flex justify-content-between">
+																					<span>Tổng thành tiền: </span>
+																					<strong id="priceDisplay"></strong>
+																				</li>
+																			</ul>
+
+
+																			<div class="input-group">
+																				<input type="text" class="form-control"
+																					placeholder="Mã khuyến mãi">
+																				<div class="input-group-append">
+																					<button type="submit"
+																						class="btn btn-secondary">Xác
+																						nhận</button>
+																				</div>
+																			</div>
+
+																		</div>
+																		<div class="col-md-8 order-md-1">
+																			<a href="#" class="fs-16 dropdown-toggle" id="dropdownToggle" title="Thông tin khách hàng là bắt buộc">
+																				Thông tin khách hàng
+																			</a>
+
+																			<div class="row dropdown-content-paycart"
+																				id="dropdowninpaycart">
+																				<div class="col-md-12 m-b-20">
+																					<label for="kh_ten">Họ tên</label>
+																					<input type="text"
+																						class="form-control"
+																						name="kh_ten" id="kh_ten"
+																						th:value="${user != null ? user.fullname : ''}" required>
+																				</div>
+																				
+																				<div class="col-md-12 m-b-20">
+																					<label for="kh_diachi">Địa chỉ</label>
+																					<input type="text"
+																						class="form-control"
+																						name="kh_diachi" id="kh_diachi"
+																						th:value="${user != null ? user.address : ''}" required>
+																				</div>
+																				
+																				<div class="col-md-12 m-b-20">
+																					<label for="kh_dienthoai">Điện thoại</label>
+																					<input type="text"
+																						class="form-control"
+																						name="kh_dienthoai"
+																						id="kh_dienthoai"
+																						th:value="${user != null ? user.phoneNumber : ''}" required>
+																				</div>
+																				
+																				<div class="col-md-12 m-b-20">
+																					<label for="kh_email">Email</label>
+																					<input type="text"
+																						class="form-control"
+																						name="kh_email" id="kh_email"
+																						th:value="${user != null ? user.email : ''}" required>
+																				</div>
+																				
+																			</div>
+
+																			<h4 class="m-t-40">Hình thức thanh toán</h4>
+
+																			<div class="d-block">
+																				<div
+																					class="custom-control custom-radio">
+																					<input id="httt-2" name="httt_ma"
+																						type="radio"
+																						class="custom-control-input"
+																						required="" value="Chuyển khoản">
+																					<label class="custom-control-label"
+																						for="httt-2">Chuyển khoản</label>
+																				</div>
+																				<div
+																					class="custom-control custom-radio">
+																					<input id="httt-3" name="httt_ma"
+																						type="radio"
+																						class="custom-control-input"
+																						required="" value="Ship COD">
+																					<label class="custom-control-label"
+																						for="httt-3">Ship COD</label>
+																				</div>
+																			</div>
+																			<hr class="mb-4">
+																			<button
+																				class="btn btn-primary btn-lg btn-block" id="check"
+																				type="button" onclick="confirmPayment()">Đặt hàng</button></a>
+																		</div>
+																	</div>
+																</form>
+															</div>
+															<!-- End block content -->
+														</main>
+													</div>
+
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<h3 class="box-title mt-5">General Info</h3>
+													<div class="table-responsive">
+														<table class="table table-striped table-product">
+															<tbody>
+																<tr>
+																	<td width="390">Brand</td>
+																	<td>No Brand</td>
+																</tr>
+																<tr>
+																	<td>Style</td>
+																	<td>Korea</td>
+																</tr>
+																<tr>
+																	<td>Type</td>
+																	<td th:text="${product.type}"></td>
+																</tr>
+																<tr>
+																	<td>Material</td>
+																	<td>Cotton</td>
+																</tr>
+																<tr>
+																	<td>Producer</td>
+																	<td>Tây Ninh, Việt Nam</td>
+																</tr>
+																<tr>
+																	<td>Product ID</td>
+																	<td th:text="${product.SKU}"></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end contact section -->
+	<!--  footer -->
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<ul class="location_icon">
+							<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br>Hoa Thanh - Tay
+								Ninh</li>
+							<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +84328149120</li>
+							<li><a href="#"><i class="fa fa-envelope"
+										aria-hidden="true"></i></a><br>nghia.nt1002@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+	
+	<!-- Javascript files-->
+	<script src="js/js-Ind/jquery.min.js"></script>
+	<script src="js/js-Ind/popper.min.js"></script>
+	<script src="js/js-Ind/bootstrap.bundle.min.js"></script>
+	<script src="js/js-Ind/jquery-3.0.0.min.js"></script>
+	<!-- sidebar -->
+	<script src="js/js-Ind/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/js-Ind/custom.js"></script>
+	<script src="js/js-task/task.js"></script>
+	<script src="js/js-Detail/detail.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const quantityInput = document.getElementById("quantityInput");
+			const quantityDisplay = document.getElementById("quantityDisplay");
+			const quantityDisplay2 = document.getElementById("quantityDispla2");
+			const priceDisplay = document.getElementById("priceDisplay");
+			const quantityBuy = document.getElementById("quantityBuy");
+			const priceBuy = document.getElementById("priceBuy");
+			const productBuy = document.getElementById("productBuy");
+			var productPrice = '[[${product.price}]]';
+			var productId = '[[${product.id}]]';
+
+			// Hiển thị giá trị ban đầu của quantity
+			const updatedQuantity = quantityInput.value;
+			quantityDisplay.textContent = updatedQuantity;
+			quantityDisplay2.textContent = quantityInput.value;
+			priceDisplay.textContent = productPrice * quantityInput.value + '.00 VND';
+			quantityBuy.value = quantityInput.value;
+			priceBuy.value = productPrice * quantityInput.value;
+			productBuy.value = productId;
+
+			// Sự kiện khi nhấn vào nút plus
+			document.querySelector('.button.plus').addEventListener('click', function () {
+				quantityInput.value = parseInt(quantityInput.value) + 1;
+				quantityDisplay.textContent = quantityInput.value;
+				quantityDisplay2.textContent = quantityInput.value;
+				priceDisplay.textContent = productPrice * quantityInput.value + '.00 VND';
+				quantityBuy.value = quantityInput.value;
+				priceBuy.value = productPrice * quantityInput.value;
+				productBuy.value = productId;
+			});
+
+			// Sự kiện khi nhấn vào nút minus
+			document.querySelector('.button.minus').addEventListener('click', function () {
+				if (quantityInput.value > 1) {
+					quantityInput.value = parseInt(quantityInput.value) - 1;
+					quantityDisplay.textContent = quantityInput.value;
+					quantityDisplay2.textContent = quantityInput.value;
+					priceDisplay.textContent = productPrice * quantityInput.value + '.00 VND';
+					quantityBuy.value = quantityInput.value;
+					priceBuy.value = productPrice * quantityInput.value;
+					productBuy.value = productId;
+				}
+			});
+		});
+	</script>
+	
+	<script>
+		function confirmPayment() {
+			Swal.fire({
+				icon: 'question',
+				title: 'Bạn có chắc chắn muốn đặt hàng không?',
+				showCancelButton: true,
+				confirmButtonText: 'Có',
+				cancelButtonText: 'Không'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'Đăt hàng thành công'
+					});
+					document.forms["frmthanhtoan"].submit();
+				}
+			});
+		}
+	</script>
+
+
+	
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<!-- basic -->
+	<meta charset="utf-8">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Trang chủ - Mena Shop</title>
+	<link rel="stylesheet" href="CSS/CSS-Ind/bootstrap.min.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/style.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/responsive.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="CSS/util.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+		media="screen">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<!-- body -->
+<body class="main-layout">
+	<!-- header -->
+	<header>
+		<!-- header inner -->
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo">
+									<a href="/home"> <img src="images/images/logoshop.png" alt="#"  style="width: 45%;"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon" style="position: relative; top: -10px;">
+									<i class="fas fa-bars" style="color: #03cafc;"></i>
+								</span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active">
+										<a class="nav-link" href="home">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="shop">Shop</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="contact">Contact Us</a>
+									</li>
+									<li class="nav-item" sec:authorize="!isAuthenticated()">
+										<a class="nav-link" href="login">Login</a>
+									</li>
+									<li class="nav-item" sec:authorize="isAuthenticated()">
+										<form th:action="@{/logout}" method="post">
+											<button type="submit" class="nav-link"
+												style="background-color: transparent;">Logout</button>
+										</form>
+									</li>
+									<li class="nav-item dropdown sea_icon">
+										<a class="nav-link" href="#" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="fa fa-shopping-bag" id="cartIcon" aria-hidden="true"></i>
+											<span id="cartItemCount" class="badge badge-pill badge-danger"
+												style="position: absolute; bottom: 8px; left: 6px; font-size: 10px;"
+												sec:authorize="isAuthenticated()"
+												th:text="${soLuongSanPham}"></span>
+											<i class="m-l-30 fa fa-user" id="infUserIcon" aria-hidden="true"></i>
+										</a>
+									</li>
+								</ul>
+								
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header inner -->
+	<!-- end header -->
+	<!-- banner -->
+	<section class="banner_main">
+		<div id="banner1" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#banner1" data-slide-to="0" class="active"></li>
+				<li data-target="#banner1" data-slide-to="1"></li>
+				<li data-target="#banner1" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="carousel-caption">
+							<div class="text-bg">
+								<h1> <span class="blu">Welcome<br></span>TO MENASHOP</h1>
+								<figure><img style="width: 50%;" src="images/images/intropicture-02.jpeg" alt="#" />
+								</figure>
+								<a class="read_more" href="#">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="container">
+						<div class="carousel-caption">
+							<div class="text-bg">
+								<h1> <span class="blu">Welcome<br></span>To MENASHOP</h1>
+								<figure><img style="width: 50%;" src="images/images/intropicture-02.jpeg" alt="#" />
+								</figure>
+								<a class="read_more" href="#">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="container">
+						<div class="carousel-caption">
+							<div class="text-bg">
+								<h1> <span class="blu">Welcome<br></span>To MENASHOP</h1>
+								<figure><img style="width: 50%;" src="images/images/intropicture-02.jpeg" alt="#" />
+								</figure>
+								<a class="read_more" href="#">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+			</a>
+			<a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>
+			</a>
+		</div>
+	</section>
+	<!-- end banner -->
+	<!-- about section -->
+	<div class="about">
+		<div class="container">
+			<div class="row d_flex">
+				<div class="col-md-5">
+					<div class="about_img">
+						<figure><img src="images/images/intropicture-01.jpeg" alt="#" /></figure>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="titlepage">
+						<h2>About Our Shop</h2>
+						<p>There are many variations of passages of Lorem Ipsum available, but the majority have
+							suffered alteration in some form, by injected humour, or randomised words which don't look
+							even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
+							sure there isn't anything embarrassing hidden in the middle of text.</p>
+					</div>
+					<a class="read_more" href="#">Read More</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- about section -->
+	<!-- Our  Glasses section -->
+	<div class="glasses">
+		<div>
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<div class="titlepage">
+						<h2>Our Product</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labor
+							e et dolore magna aliqua. Ut enim ad minim veniam, qui
+						</p>
+					</div>
+				</div>
+			</div>
+			<nav aria-label="breadcrumb" class="main-breadcrumb" style="padding-left: 50px; padding-right: 50px;">
+				<div class="breadcrumb">
+					<div class="row col-sm-12 p-l-30">
+						<div class="col-sm-4">
+							<div class="input-group" style="padding: 5px;">
+								<select class="form-control" name="category" id="category">
+									<option value="" disabled selected>Loại sản phẩm</option>
+									<option th:each="category : ${category}" th:value="${category.title}" th:text="${category.title}"></option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-info" type="button" href="javascript:void(0)" onclick="applyFilterByCategory()">Apply</button>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<div class="input-group" style="padding: 5px;">
+								<select class="form-control" name="sortbyprice" id="sortByPrice">
+									<option value="" disabled selected>Xếp theo giá</option>
+									<option value="Tăng dần">Tăng dần</option>
+									<option value="Giảm dần">Giảm dần</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-info" type="button" href="javascript:void(0)" onclick="applyFilterByPrice()">Apply</button>
+								</div>
+							</div>
+						</div>
+							
+						<div class="col-sm-4" style="padding: 5px;">
+							<form class="my-2 my-lg-0 " action="/home" method="get">
+								<div class="input-group">
+									<input id="searchKeyword" class="form-control" name="keyword" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-search"></i></span>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div th:each="product : ${products}" class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+					<a th:href="@{'/detail?id=' + ${product.id}}">
+						<div class="glasses_box m-l-1">
+						<figure><img th:src="${product.picture}" alt="#" /></figure>
+						<h3>
+							<span class="strike-through" th:text="${product.price} + VND"></span>
+							<span class="blu" th:text="${product.price}"></span> VND
+						</h3>
+						<p class="m-l-5 m-r-5" th:text="${product.name}"></p>
+						<div class="rating m-t-10">
+							<input type="radio" name="star" id="star1" onclick="rate(1)">
+							<label for="star1"><i class="fa fa-star"></i></label>
+
+							<input type="radio" name="star" id="star2" onclick="rate(2)">
+							<label for="star2"><i class="fa fa-star"></i></label>
+
+							<input type="radio" name="star" id="star3" onclick="rate(3)">
+							<label for="star3"><i class="fa fa-star"></i></label>
+
+							<input type="radio" name="star" id="star4" onclick="rate(4)">
+							<label for="star4"><i class="fa fa-star"></i></label>
+
+							<input type="radio" name="star" id="star5" onclick="rate(5)">
+							<label for="star5"><i class="fa fa-star"></i></label>
+						</div>
+					</div>
+					</a>
+				</div>
+
+			</div>
+			
+			<ul class="pagination" id="pagenumberid">
+				<li>
+					<a href="/home?page=1&size=8" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+
+				<li th:each="pageNum : ${pageNumbers}">
+					<a th:href="@{'/home?page=' + ${pageNum} + '&size=8'}" th:text="${pageNum}" th:data-page="${pageNum}"
+						th:class="${pageNum == currentPage} ? 'active' : ''"></a>
+				</li>
+
+				
+				<li>
+					<a th:href="@{'/home?page=' + ${totalPages} + '&size=8'}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<!-- end Our  Glasses section -->
+	<!-- Our shop section -->
+	<div id="about" class="shop">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="shop_img">
+						<figure><img src="images/images/intropicture-01.jpeg" alt="#" /></figure>
+					</div>
+				</div>
+				<div class="col-md-7 padding_right0">
+					<div class="max_width">
+						<div class="titlepage">
+							<h2>The Best At Our Shop</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+								ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+								reprehenderit in voluptate velit esse cillum dolore</p>
+							<a class="read_more" href="#">Shop Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Our shop section -->
+	<!-- clients section -->
+	<div class="clients">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titlepage">
+						<h2>What say our clients</h2>
+						<p>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							la</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="myCarousel" class="carousel slide clients_Carousel " data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="container">
+									<div class="carousel-caption ">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="clients_box">
+													<figure><img src="images/images/our.png" alt="#" /></figure>
+													<h3>Sandy Mark</h3>
+													<p>It is a long established fact that a reader will be distracted by
+														the readable content of a page when looking at its layout. The
+														point of using Lorem Ipsum is that it has a more-or-less normal
+														distribution of letters,It is a long established fact a
+														more-or-less normal distribution of letters,</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<div class="container">
+									<div class="carousel-caption">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="clients_box">
+													<figure><img src="images/images/our.png" alt="#" /></figure>
+													<h3>Sandy Mark</h3>
+													<p>It is a long established fact that a reader will be distracted by
+														the readable content of a page when looking at its layout. The
+														point of using Lorem Ipsum is that it has a more-or-less normal
+														distribution of letters,It is a long established fact a
+														more-or-less normal distribution of letters,</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<div class="container">
+									<div class="carousel-caption">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="clients_box">
+													<figure><img src="images/images/our.png" alt="#" /></figure>
+													<h3>Sandy Mark</h3>
+													<p>It is a long established fact that a reader will be distracted by
+														the readable content of a page when looking at its layout. The
+														point of using Lorem Ipsum is that it has a more-or-less normal
+														distribution of letters,It is a long established fact a
+														more-or-less normal distribution of letters,</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+							<i class='fa fa-angle-left'></i>
+						</a>
+						<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+							<i class='fa fa-angle-right'></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end clients section -->
+	<!-- contact section -->
+	<div id="contact" class="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<form id="request" class="main_form">
+						<div class="row">
+							<div class="col-md-12 ">
+								<h3>Contact Us</h3>
+							</div>
+							<div class="col-md-12 ">
+								<input class="contactus" placeholder="Name" type="type" name="Name">
+							</div>
+							<div class="col-md-12">
+								<input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">
+							</div>
+							<div class="col-md-12">
+								<input class="contactus" placeholder="Email" type="type" name="Email">
+							</div>
+							<div class="col-md-12">
+								<textarea class="contactusmess-1" placeholder="Message" type="type"
+									Message="Name"></textarea>
+							</div>
+							<div class="col-md-12">
+								<button class="send_btn">Send</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="map_section">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501726.54072438116!2d106.36556752760767!3d10.75461813623973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0xf15f5aad773c112b!2zSOG7kyBDaMOtIE1pbmgsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1703767849373!5m2!1svi!2s"
+					width="100%" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- end contact section -->
+	<!--  footer -->
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<ul class="location_icon">
+							<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br>Hoa Thanh - Tay
+								Ninh</li>
+							<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +84328149120</li>
+							<li><a href="#"><i class="fa fa-envelope"
+										aria-hidden="true"></i></a><br>nghia.nt1002@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+	
+	<!-- Javascript files-->
+	<script src="js/js-Ind/jquery.min.js"></script>
+	<script src="js/js-Ind/popper.min.js"></script>
+	<script src="js/js-Ind/bootstrap.bundle.min.js"></script>
+	<script src="js/js-Ind/jquery-3.0.0.min.js"></script>
+	<!-- sidebar -->
+	<script src="js/js-Ind/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/js-Ind/custom.js"></script>
+	<script src="js/js-task/task.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	<script>
+		var currentUrl = window.location.href;
+		var startIndex = currentUrl.indexOf("keyword=");
+		var paginationLinks = document.querySelectorAll('.pagination a');
+		var urlParams = new URLSearchParams(window.location.search);
+		var keyword = urlParams.get('keyword');
+		if (keyword) {
+			document.getElementById('searchKeyword').value = keyword;
+		}
+
+		for (var i = 0; i < paginationLinks.length; i++) {
+			var link = paginationLinks[i];
+			var href = link.getAttribute('href');
+			if (startIndex !== -1) {
+				var keywordSubstring = currentUrl.substring(startIndex);
+				link.setAttribute('href', href + '&' + keywordSubstring);
+			} else {
+				link.setAttribute('href', href);
+			}
+		}
+	</script>
+	
+	<script>
+		var currentUrl = window.location.href;
+		var startIndex = currentUrl.indexOf("selectedCategory=");
+		var paginationLinks = document.querySelectorAll('.pagination a');
+
+		for (var i = 0; i < paginationLinks.length; i++) {
+			var link = paginationLinks[i];
+			var href = link.getAttribute('href');
+			if (startIndex !== -1) {
+				var selectedSubstring = currentUrl.substring(startIndex);
+				link.setAttribute('href', href + '&' + selectedSubstring);
+			} else {
+				link.setAttribute('href', href);
+			}
+		}
+	</script>
+	
+	<script>
+		function applyFilterByCategory() {
+			var selectedCategory = document.getElementById("category").value;
+			var xhr = new XMLHttpRequest();
+			if (selectedCategory) {
+				selectedCategoryValue = selectedCategory;
+				var url = "/home?selectedCategory=" + selectedCategory;
+				xhr.open("GET", url, true);
+				xhr.onload = function () {
+					// Nếu request thành công và server trả về dữ liệu
+					if (xhr.status >= 200 && xhr.status < 300) {
+						// Chuyển hướng trình duyệt đến trang mới với dữ liệu mới
+						window.location.href = url;
+					} else {
+						// Xử lý lỗi nếu có
+						console.error(xhr.statusText);
+					}
+				};
+				xhr.onerror = function () {
+					console.error(xhr.statusText);
+				};
+				xhr.send();
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Vui lòng chọn loại sản phẩm trước khi nhấn Apply!'
+				});
+			}
+		}
+		
+		window.onload = function () {
+				var urlParams = new URLSearchParams(window.location.search);
+				var selectedCategory = urlParams.get('selectedCategory');
+				if (selectedCategory) {
+					document.getElementById('category').value = selectedCategory;
+				}
+			}
+	</script>
+	
+	<script>
+		var currentUrl = window.location.href;
+		var startIndex = currentUrl.indexOf("selectedSortByPrice=");
+		var paginationLinks = document.querySelectorAll('.pagination a');
+
+		for (var i = 0; i < paginationLinks.length; i++) {
+			var link = paginationLinks[i];
+			var href = link.getAttribute('href');
+			if (startIndex !== -1) {
+				var selectedSortByPriceString = currentUrl.substring(startIndex);
+				link.setAttribute('href', href + '&' + selectedSortByPriceString);
+			} else {
+				link.setAttribute('href', href);
+			}
+		}
+	</script>
+	
+	<script>
+		function applyFilterByPrice() {
+			var selectedSortByPrice = document.getElementById("sortByPrice").value;
+			var xhr = new XMLHttpRequest();
+			if (selectedSortByPrice) {
+				selectedSortByPriceValue = selectedSortByPrice;
+				var url = "/home?selectedSortByPrice=" + selectedSortByPrice;
+				xhr.open("GET", url, true);
+				xhr.onload = function () {
+					// Nếu request thành công và server trả về dữ liệu
+					if (xhr.status >= 200 && xhr.status < 300) {
+						// Chuyển hướng trình duyệt đến trang mới với dữ liệu mới
+						window.location.href = url;
+					} else {
+						// Xử lý lỗi nếu có
+						console.error(xhr.statusText);
+					}
+				};
+				xhr.onerror = function () {
+					console.error(xhr.statusText);
+				};
+				xhr.send();
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Error',
+					text: 'Vui lòng chọn kiểu sắp xếp sản phẩm trước khi nhấn Apply!'
+				});
+			}
+		}
+
+		window.onload = function () {
+			var urlParams = new URLSearchParams(window.location.search);
+			var selectedSortByPrice = urlParams.get('selectedSortByPrice');
+			if (selectedSortByPrice) {
+				document.getElementById('sortByPrice').value = selectedSortByPrice;
+			}
+		}
+	</script>
+	
+</body>
+</html>
