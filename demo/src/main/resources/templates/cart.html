@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<!-- basic -->
+	<meta charset="utf-8">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Giỏ hàng - Mena Shop</title>
+	<link rel="stylesheet" href="CSS/CSS-Ind/bootstrap.min.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/style.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/responsive.css">
+	<link rel="stylesheet" href="CSS/CSS-Ind/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="CSS/util.css">
+	<link rel="stylesheet" href="CSS/CSS-Cart/cart.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<!-- body -->
+
+<body class="main-layout position_head">
+	<!-- end loader -->
+	<!-- header -->
+	<header class="m-b--80">
+		<!-- header inner -->
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo" style="width: 100%;">
+									<a href="/home"> <img src="images/images/logoshop.png" alt="#"  style="width: 45%;"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon" style="position: relative; top: -10px;">
+									<i class="fas fa-bars" style="color: #03cafc;"></i>
+								</span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item">
+										<a class="nav-link" href="home">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="shop">Shop</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="contact">Contact Us</a>
+									</li>
+									<li class="nav-item" sec:authorize="!isAuthenticated()">
+										<a class="nav-link" href="login">Login</a>
+									</li>
+									<li class="nav-item" sec:authorize="isAuthenticated()">
+										<form th:action="@{/logout}" method="post">
+											<button type="submit" class="nav-link"
+												style="background-color: transparent;">Logout</button>
+										</form>
+									</li>
+									<li class="nav-item dropdown sea_icon">
+										<a class="nav-link" href="#" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="fa fa-shopping-bag" id="cartIcon" style="color: #03cafc;"
+												aria-hidden="true"></i>
+											<span id="cartItemCount" class="badge badge-pill badge-danger"
+												style="position: absolute; bottom: 8px; left: 6px; font-size: 10px;"
+												sec:authorize="isAuthenticated()" th:text="${soLuongSanPham}"></span>
+											<i class="m-l-30 fa fa-user" id="infUserIcon" aria-hidden="true"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header inner -->
+	<!-- end header -->
+	<div id="contact" class="contact">
+		<div class="container">
+			<nav aria-label="breadcrumb" class="main-breadcrumb">
+				<div class="breadcrumb">
+					<li class="breadcrumb-item active" aria-current="page">Cart shop</li>
+				</div>
+			</nav>
+			<section class="">
+				<div class="container">
+					<div class="row w-100">
+						<div class="m-l-12 col-lg-12 col-md-12 col-12">
+							<table id="shoppingCart" class="table table-condensed table-responsive"
+								style="width: 100%;">
+								<thead>
+									<tr>
+										<th style="width: 60%;">Product</th>
+										<th style="width: 15%;">Price</th>
+										<th style="width: 5%;">Quantity</th>
+										<th style="width: 10%;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<th:block th:if="${not #lists.isEmpty(cartItems)}">
+										<!-- Vòng lặp qua từng sản phẩm trong giỏ hàng -->
+										<tr th:each="product : ${cartItems}">
+											<td data-th="Product">
+												<div class="row">
+													<div class="col-md-3 text-left">
+														<img th:src="${product.product.picture}" alt=""
+															class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+													</div>
+													<div class="col-md-9 text-left mt-sm-2">
+														<h4 th:text="${product.product.name}"></h4>
+														<p class="font-weight-light"
+															th:text="'Size: ' + ${product.size} + ' &amp; No Brand'">
+														</p>
+													</div>
+												</div>
+											</td>
+											<td class="fs-17" data-th="Price"
+												th:text="${product.product.price}*${product.quantity} + ' VND'"></td>
+											<td data-th="Quantity">
+												<input class="form-control form-control-lg text-center"
+													th:value="${product.quantity}">
+											</td>
+											<td class="actions" data-th="">
+												<div class="text-right">
+													<button class="btn btn-white border-secondary bg-white btn-md mb-2">
+														<i class="fas fa-sync"></i>
+													</button>
+													<button class="btn btn-white border-secondary bg-white btn-md mb-2"
+														type="button"
+														th:onclick="@{'removeFromCart(\'' + ${product.id} + '\', this)'}">
+														<i class="fas fa-trash"></i>
+													</button>
+												</div>
+											</td>
+										</tr>
+									</th:block>
+									<!-- Nếu không có sản phẩm, hiển thị thông báo -->
+									<th:block th:unless="${not #lists.isEmpty(cartItems)}">
+										<tr>
+											<td colspan="4" class="text-center">Không có sản phẩm trong giỏ hàng.</td>
+										</tr>
+									</th:block>
+								</tbody>
+							</table>
+							<div class="float-right text-right">
+								<h4>Subtotal:</h4>
+								<h1 id="totalPrice" th:text="${cart?.price != null ? cart.price + '.00 VND' : '0.00 VND'}"></h1>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-4 d-flex align-items-center">
+						<div class="col-sm-6 order-md-2 text-right">
+							<a href="#" id="openDialogButton" class="btn btn-primary mb-4 btn-lg pl-5 pr-5 hoverbutton"
+								data-toggle="modal" data-target="#checkoutModal">Checkout</a>
+						</div>
+						<div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+							<a href="home">
+								<i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
+						</div>
+					</div>
+					<div id="checkoutModal" class="modal fade" tabindex="-1" role="dialog"
+						aria-labelledby="checkoutModalLabel" aria-hidden="true">
+						<!-- Your checkout form content here -->
+						<main role="main">
+							<!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+							<div class="container mt-4 white-background borderless-container">
+								<button class="exit-button" onclick="toggleModal()">
+									<i class="fas fa-times"></i> <!-- Font Awesome "X" icon -->
+								</button>
+								<form class="needs-validation" name="frmthanhtoan" method="get" action="/api">
+
+									<div class="py-5 text-center">
+										<i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
+										<h2>Thanh toán</h2>
+										<p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước
+											khi Đặt hàng.</p>
+									</div>
+
+									<div class="row">
+										<div class="col-md-4 order-md-2 mb-4">
+											<h4 class="d-flex justify-content-between align-items-center mb-3">
+												<span class="text-muted">Giỏ hàng</span>
+												<span class="badge badge-secondary badge-pill"
+													th:text="${soLuongSanPham}"></span>
+											</h4>
+
+											<th:block th:if="${not #lists.isEmpty(cartItems)}">
+												<!-- Vòng lặp qua từng sản phẩm trong giỏ hàng -->
+												<ul class="list-group mb-3" th:each="product : ${cartItems}">
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+													<input type="hidden" name="productIdBuy" th:value="${product.product.id}">
+													<input type="hidden" name="quantityBuy" th:value="${product.quantity}">
+													<input type="hidden" name="sizeBuy" th:value="${product.size}">
+													<input type="hidden" name="totalPriceBuy" th:value="${product.quantity}*${product.product.price}">
+
+													<li
+														class="list-group-item d-flex justify-content-between lh-condensed">
+														<div>
+															<h6 class="my-0" th:text="${product.product.name}"></h6>
+															<small class="text-muted"
+																th:text="'Size: ' + ${product.size} + ', '"></small>
+															<small class="text-muted"
+																th:text="${product.quantity} + ' x ' + ${product.product.price} + '.00 VND'"></small>
+														</div>
+													</li>
+
+												</ul>
+												<li class="list-group-item d-flex justify-content-between">
+														<span>Tổng thành tiền: </span>
+														<strong
+															th:text="${cart?.price != null ? cart.price + '.00 VND' : '0.00 VND'}"></strong>
+													</li>
+											</th:block>
+											<!-- Nếu không có sản phẩm, hiển thị thông báo -->
+											<th:block th:unless="${not #lists.isEmpty(cartItems)}">
+												<h5 colspan="4" class="text-center m-b-10">Không có sản phẩm trong giỏ
+													hàng.</h5>
+											</th:block>
+
+										</div>
+										<div class="col-md-8 order-md-1">
+											<a href="#" class="fs-16 dropdown-toggle" id="dropdownToggle">
+												Thông tin khách hàng
+											</a>
+
+											<div class="row dropdown-content-paycart" id="dropdowninpaycart">
+
+												<div class="col-md-12 m-b-20">
+													<label for="kh_ten">Họ tên</label>
+													<input type="text" class="form-control" name="kh_ten" id="kh_ten"
+														th:value="${user.fullname}">
+												</div>
+
+												<div class="col-md-12 m-b-20">
+													<label for="kh_diachi">Địa chỉ</label>
+													<input type="text" class="form-control" name="kh_diachi"
+														id="kh_diachi" th:value="${user.address}">
+												</div>
+
+												<div class="col-md-12 m-b-20">
+													<label for="kh_dienthoai">Điện thoại</label>
+													<input type="text" class="form-control" name="kh_dienthoai"
+														id="kh_dienthoai" th:value="${user.phoneNumber}">
+												</div>
+
+												<div class="col-md-12 m-b-20">
+													<label for="kh_email">Email</label>
+													<input type="text" class="form-control" name="kh_email"
+														id="kh_email" th:value="${user.email}">
+												</div>
+
+											</div>
+
+											<h4 class="m-t-40">Hình thức thanh toán</h4>
+
+											<div class="d-block">
+												<div class="custom-control custom-radio">
+													<input id="httt-2" name="httt_ma" type="radio"
+														class="custom-control-input" required="" value="Chuyển
+														khoản">
+													<label class="custom-control-label" for="httt-2">Chuyển
+														khoản</label>
+												</div>
+												<div class="custom-control custom-radio">
+													<input id="httt-3" name="httt_ma" type="radio"
+														class="custom-control-input" required="" value="Ship COD">
+													<label class="custom-control-label" for="httt-3">Ship COD</label>
+												</div>
+											</div>
+											<hr class="mb-4">
+											<button class="btn btn-primary btn-lg btn-block" type="button" onclick="confirmPayment()"
+												name="btnDatHang">Đặt
+												hàng</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- End block content -->
+						</main>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<!-- end contact section -->
+	<!--  footer -->
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<ul class="location_icon">
+							<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br>Hoa Thanh - Tay
+								Ninh</li>
+							<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +84328149120</li>
+							<li><a href="#"><i class="fa fa-envelope"
+										aria-hidden="true"></i></a><br>nghia.nt1002@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+	
+	<!-- Javascript files-->
+	<script src="js/js-Ind/jquery.min.js"></script>
+	<script src="js/js-Ind/popper.min.js"></script>
+	<script src="js/js-Ind/bootstrap.bundle.min.js"></script>
+	<script src="js/js-Ind/jquery-3.0.0.min.js"></script>
+	<!-- sidebar -->
+	<script src="js/js-Ind/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/js-Ind/custom.js"></script>
+	<script src="js/js-task/task.js"></script>
+	<script src="js/js-task/senddata.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	<script>
+		function confirmPayment() {
+			Swal.fire({
+				icon: 'question',
+				title: 'Bạn có chắc chắn muốn đặt hàng không?',
+				showCancelButton: true,
+				confirmButtonText: 'Có',
+				cancelButtonText: 'Không'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'Đăt hàng thành công'
+					});
+					document.forms["frmthanhtoan"].submit();
+				}
+			});
+		}
+	</script>
+	
+</body>
+</html>
