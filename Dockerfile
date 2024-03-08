@@ -9,7 +9,7 @@ WORKDIR /usr/src/demo
 
 # Biên dịch ứng dụng của bạn (ví dụ: sử dụng Maven)
 RUN chmod +x mvnw
-RUN ./mvnw -X clean package
+RUN ./mvnw -e clean package
 
 # Chạy ứng dụng khi container được khởi động
 CMD ["java", "-jar", "target/demo.jar"]
