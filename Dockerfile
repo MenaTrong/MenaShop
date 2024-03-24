@@ -1,5 +1,5 @@
 # Sử dụng hình ảnh OpenJDK 14
-FROM adoptopenjdk/openjdk17:alpine
+FROM openjdk:17-jdk-alpine
 
 # Sao chép tất cả các tệp và thư mục cần thiết từ máy cục bộ vào container
 COPY . /usr/src/demo
